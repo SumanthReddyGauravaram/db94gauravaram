@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to the mattress pug
+  div(class="container-fluid")
+        div(class="row")
+            -
+                let mattress = [
+                    {
+                        "brand": "centuary",
+                        "material": "cotton",
+                        "cost": "Ten USD"
+                    },
+                    {
+                        "brand": "sleepwell",
+                        "material": "cotton",
+                        "cost": "Twelve USD"
+                    },
+                    {
+                        "brand": "relaxo",
+                        "material": "cotton",
+                        "cost": "nine USD"
+                    },                   
+                ]
+            each v,index in mattress
+                div(class="col-sm-2" onclick=`buy(${index})`) #{v.brand}
+                div(class="col-sm-2" onclick=`buy(${index})`) #{v.material}
+                div(class="col-sm-2" onclick=`buy(${index})`) #{v.cost}
+  script.                
+    function buy(itemNo)
+    {
+        alert(`you purchased Item ${itemNo+1}`)
+    }
