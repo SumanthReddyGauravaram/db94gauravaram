@@ -1,0 +1,1 @@
+mongodb+srv://S544930:Umarani0535@learnMongo.5wucp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
