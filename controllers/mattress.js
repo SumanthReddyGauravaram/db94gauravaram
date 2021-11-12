@@ -24,10 +24,18 @@ exports.mattress_view_all_Page = async function (req, res) {
     }
 };
 
-// for a specific mattress.
-exports.mattress_detail = function (req, res) {
-    res.send('NOT IMPLEMENTED: mattress detail: ' + req.params.id);
-};
+// for a specific mattress. 
+exports.mattress_detail = async function(req, res) { 
+    console.log("detail"  + req.params.id) 
+    try { 
+        result = await mattress.findById( req.params.id) 
+        res.send(result) 
+    } catch (error) { 
+        res.status(500) 
+        res.send(`{"error": document for id ${req.params.id} not found`); 
+    } 
+}; 
+
 // Handle mattress create on POST. 
 exports.mattress_create_post = async function (req, res) {
     console.log(req.body)
@@ -52,7 +60,24 @@ exports.mattress_create_post = async function (req, res) {
 exports.mattress_delete = function (req, res) {
     res.send('NOT IMPLEMENTED: mattress delete DELETE ' + req.params.id);
 };
-// Handle mattress update form on PUT.
-exports.mattress_update_put = function (req, res) {
-    res.send('NOT IMPLEMENTED: mattress update PUT' + req.params.id);
-};
+
+//Handle mattress update form on PUT. 
+exports.mattress_update_put = async function(req, res) { 
+    console.log(`update on id ${req.params.id} with body 
+${JSON.stringify(req.body)}`) 
+    try { 
+        let toUpdate = await mattress.findById( req.params.id) 
+        // Do updates of properties 
+        if(req.body.mattress_type)  
+               toUpdate.brand = req.body.brand; 
+        if(req.body.cost) toUpdate.cost = req.body.cost; 
+        if(req.body.material) toUpdate.material = req.body.material; 
+        let result = await toUpdate.save(); 
+        console.log("Success " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": ${err}: Update for id ${req.params.id} 
+failed`); 
+    } 
+}; 
