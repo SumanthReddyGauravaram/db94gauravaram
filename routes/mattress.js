@@ -11,4 +11,7 @@ router.get('/', function(req, res, next) {
   res.render('mattress', { title: 'Search Results mattress' });
 });
 
+/* GET detail costume page */
+router.get('/detail', mattress_controlers.mattress_view_one_Page);
+
 module.exports = router;

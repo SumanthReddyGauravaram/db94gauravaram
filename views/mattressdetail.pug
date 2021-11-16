@@ -1,0 +1,20 @@
+extends layout
+block content
+    h1= title
+    - let mattressid = toShow._id
+    - let mattressbrand = toShow.brand
+    - let mattressmaterial = toShow.material
+    - let mattresscost = toShow.cost
+    div
+        div.row
+            div(class='mattressAttr mr-3') mattress ID is:
+            div #{mattressid}
+        div.row
+            div(class='mattressAttr mr-3') mattress brand is:
+            div #{mattressbrand}
+        div.row
+            div(class='mattressAttr mr-3') mattress material is:
+            div #{mattressmaterial}
+        div.row
+            div(class='mattressAttr mr-3') mattress cost is:
+            div #{mattresscost}

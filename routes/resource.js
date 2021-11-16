@@ -17,4 +17,5 @@ router.put('/mattress/:id', mattress_controller.mattress_update_put);
 router.get('/mattress/:id', mattress_controller.mattress_detail);
 // GET request for list of all mattress items.
 router.get('/mattress', mattress_controller.mattress_list);
+
 module.exports = router;
