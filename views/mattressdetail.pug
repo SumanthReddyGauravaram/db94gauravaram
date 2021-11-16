@@ -1,6 +1,8 @@
 extends layout
 block content
     h1= title
+    if (toShow == null)
+        h2 No instance to delete
     - let mattressid = toShow._id
     - let mattressbrand = toShow.brand
     - let mattressmaterial = toShow.material
@@ -8,13 +10,13 @@ block content
     div
         div.row
             div(class='mattressAttr mr-3') mattress ID is:
-            div #{mattressid}
+            div(class='variety stylesheetnew') #{mattressid}
         div.row
             div(class='mattressAttr mr-3') mattress brand is:
-            div #{mattressbrand}
+            div(class="variety stylesheetnew") #{mattressbrand}
         div.row
             div(class='mattressAttr mr-3') mattress material is:
-            div #{mattressmaterial}
+            div(class="variety stylesheetnew") #{mattressmaterial}
         div.row
             div(class='mattressAttr mr-3') mattress cost is:
-            div #{mattresscost}
+            div(class="variety stylesheetnew") #{mattresscost}
