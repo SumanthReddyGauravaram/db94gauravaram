@@ -98,6 +98,33 @@ exports.mattress_create_Page = function (req, res) {
     }
 };
 
+// Handle building the view for updating a mattress.
+// query provides the id
+exports.mattress_update_Page = async function (req, res) {
+    console.log("update view for item " + req.query.id)
+    try {
+        let result = await mattress.findById(req.query.id)
+        res.render('mattressupdate', { title: 'Mattress Update', toShow: result });
+    }
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+
+// Handle a delete one view with id from query
+exports.mattress_delete_Page = async function (req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try {
+        result = await mattress.findById(req.query.id)
+        res.render('mattressdelete', { title: 'Mattress Delete', toShow: result });
+    }
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+
 //Handle mattress update form on PUT. 
 exports.mattress_update_put = async function (req, res) {
     console.log(`update on id ${req.params.id} with body 

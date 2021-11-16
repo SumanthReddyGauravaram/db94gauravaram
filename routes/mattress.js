@@ -17,4 +17,10 @@ router.get('/detail', mattress_controlers.mattress_view_one_Page);
 /* GET create mattress page */
 router.get('/create', mattress_controlers.mattress_create_Page);
 
+/* GET create update page */
+router.get('/update', mattress_controlers.mattress_update_Page);
+
+/* GET create mattress page */
+router.get('/delete', mattress_controlers.mattress_delete_Page);
+
 module.exports = router;

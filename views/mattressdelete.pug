@@ -1,0 +1,55 @@
+extends layout
+
+block content
+  h1= title
+
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let mattressid = toShow._id
+    - let mattressbrand = toShow.brand
+    - let mattressmaterial = toShow.material
+    - let mattresscost = toShow.cost
+    - let actionid = "/resource/mattress/" + mattressid
+
+    script let actionid = "#{actionid}"
+    div
+      div.row
+        div(class='mattressAttr mr-3') Mattress ID is:
+        div(class='newAttr') #{mattressid}
+      div.row
+        div(class='mattressAttr mr-3') Mattress brand is:
+        div(class='newAttr') #{mattressbrand}
+      div.row
+        div(class='mattressAttr mr-3') Mattress material is:
+        div(class='newAttr') #{mattressmaterial}
+      div.row
+        div(class='mattressAttr mr-3') Mattress cost is:
+        div(class='newAttr') #{mattresscost}
+      
+
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+
+  script.
+    function cancel() {
+      // Go back to the home page for the mattress collection
+      window.location.href='/mattress'
+    }
+  script.
+    function deleteOnid() {
+      console.log("Deleting the Resource")
+      // delete first
+      fetch(actionid, {
+        method: 'DELETE'      // Don't need a body for the delete
+      }).then((resp) => {
+        return resp.json();   // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Delete succeded")
+        window.location.href='/mattress'
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Delete failed " + error )
+      });
+    }

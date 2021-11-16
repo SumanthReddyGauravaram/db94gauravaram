@@ -1,0 +1,47 @@
+extends layout
+
+block content
+  h1= title
+
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let mattressid = toShow._id
+    - let mattressbrand = toShow.brand
+    - let mattressmaterial = toShow.material
+    - let mattresscost = toShow.cost
+  
+    div.row(class='mb-2')
+      div.mr-1 ID is
+      div #{mattressid}
+    - let actionid = "/resource/mattress/" + mattressid
+    form(id='mattressForm', action= actionid, method="PUT")
+      div.form-group
+          label.mattressAttr(for='brand') Mattress brand
+          input#brand(type='text', name='brand', value= mattressbrand )
+      div.form-group
+          label.mattressAttr(for='material') Mattress Quantity
+          input#material(type='text', name='material', value= mattressmaterial )
+      div.form-group
+          label.mattressAttr(for='cost') Mattress cost
+          input#cost(type='text', name='cost', value= mattresscost )
+      input(type="submit")
+
+  script.
+    document.forms['mattressForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      console.log(event.target)
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Update succeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Update failed " + error )
+      });
+    });
