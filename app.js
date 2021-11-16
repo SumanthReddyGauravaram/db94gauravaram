@@ -19,8 +19,9 @@ var resourceRouter = require('./routes/resource');
 
 // We can seed the collection if needed on server start
 async function recreateDB(){
-// Delete everything await Costume.deleteMany();
-let instance1 = new Mattress({brand:"centuary", material:'cotton', cost:'10'});
+// Delete everything 
+await Mattress.deleteMany();
+let instance1 = new Mattress({brand:"doodhi", material:'cotton', cost:'50'});
 instance1.save( function(err,doc) {
 if(err) return console.error(err);
 console.log("First object saved")
@@ -30,10 +31,14 @@ instance2.save( function(err,doc) {
 if(err) return console.error(err);
 console.log("Second object saved")
 });
-let instance3 = new Mattress({brand:"relaxo", material:'cotton', cost:'9'});
+let instance3 = new Mattress({brand:"centuary", material:'cotton', cost:'10'});
 instance3.save( function(err,doc) {
 if(err) return console.error(err);
 console.log("Third object saved")
+});
+let instance4 = new Mattress({brand:"relaxo", material:'cotton', cost:'9'});
+instance4.save( function(err,doc) {
+if(err) return console.error(err);
 });
 }
 
