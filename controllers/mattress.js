@@ -84,6 +84,20 @@ exports.mattress_view_one_Page = async function (req, res) {
     }
 };
 
+// Handle building the view for creating a mattress.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.mattress_create_Page = function (req, res) {
+    console.log("create view")
+    try {
+        res.render('mattresscreate', { title: 'Mattress Create' });
+    }
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+
 //Handle mattress update form on PUT. 
 exports.mattress_update_put = async function (req, res) {
     console.log(`update on id ${req.params.id} with body 
