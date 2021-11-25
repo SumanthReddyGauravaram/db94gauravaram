@@ -1,15 +1,11 @@
 extends layout
-
 block content
-  h1= title
-  p Sumanth Kumar Reddy Gauravaram
-  button(type="button", class="btn btn-secondary", onclick="update()") Press Me for the contents
-  |
-  div(id="target") Display
-  a(href='/mattress') mattress page link
-  script. 
-    let client_count = 0;
-    function update() {
-      client_count = client_count + 1;
-      document.getElementById("target").innerHTML = `Value now ${client_count}`  ;
-      }
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/mattress") Take me to mattress
+    br
+    a(href="/logout") Logout

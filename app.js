@@ -47,7 +47,7 @@ async function recreateDB() {
     if (err) return console.error(err);
     console.log("Third object saved")
   });
-  let instance1 = new Mattress({ brand: "relaxo", material: 'cotton', cost: '9' });
+  let instance1 = new Mattress({ brand: "relaxo", material: 'cotton', cost: '19' });
   instance1.save(function (err, doc) {
     if (err) return console.error(err);
     console.log("First object saved")

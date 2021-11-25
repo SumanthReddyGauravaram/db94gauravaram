@@ -1,6 +1,8 @@
 extends layout
 
 block content
+  - let create = `dispatch(\"/mattress/create\")`
+  button.btn(class="btn-primary m1-1", onclick=create) Create
   h1= title
   p Welcome to the mattress pug
   div(class="container-fluid")
@@ -12,8 +14,12 @@ block content
     div(class="row") 
       each item in mattress 
         - let destination = `dispatch(\"/mattress/update?id=${item._id}\")`
+        - let detail=`dispatch(\"/mattress/detail/?id=${item._id}\")`
+        - let del=`dispatch(\"/mattress/delete/?id=${item._id}\")`
         div(class="row-sm-2", class="m-1") Item #{item.brand}(#{item.material}) is #{item.cost}
             button.btn( class="btn-primary ml-1", onclick= destination) Update  
+            button.btn( class="btn-dark ml-2", onclick=detail ) Get Detail
+            button.btn( class="btn-warning ml-2", onclick=del ) Delete
 
         script.                
             function buy(itemNo)
